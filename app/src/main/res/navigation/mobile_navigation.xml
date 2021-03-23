@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_finder">
+
+    <fragment
+        android:id="@+id/nav_finder"
+        android:name="com.kthulhu.endportalfinder.ui.finder.FinderFragment"
+        android:label="@string/menu_finder"
+        tools:layout="@layout/fragment_portals" />
+
+    <fragment
+        android:id="@+id/nav_portals"
+        android:name="com.kthulhu.endportalfinder.ui.portals.PortalsFragment"
+        android:label="@string/menu_portals"
+        tools:layout="@layout/fragment_finder" />
+
+    <fragment
+        android:id="@+id/nav_usage_guide"
+        android:name="com.kthulhu.endportalfinder.ui.usageguide.UsageGuideFragment"
+        android:label="@string/menu_usage_guide"
+        tools:layout="@layout/fragment_usage_guide" />
+</navigation>

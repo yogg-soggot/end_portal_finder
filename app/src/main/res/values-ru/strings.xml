@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Настройки</string>
+    <string name="menu_finder">Поиск портала</string>
+    <string name="menu_portals">Найденные порталы</string>
+    <string name="menu_usage_guide">Как пользоваться</string>
+</resources>
