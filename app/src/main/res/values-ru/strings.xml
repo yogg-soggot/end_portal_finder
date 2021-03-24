@@ -4,4 +4,14 @@
     <string name="menu_finder">Поиск портала</string>
     <string name="menu_portals">Найденные порталы</string>
     <string name="menu_usage_guide">Как пользоваться</string>
+    <string name="enter_z_hint">Координата Z</string>
+    <string name="enter_x_hint">Координата X</string>
+    <string name="enter_angle_hint">Угол Броска</string>
+    <string name="get_coordinates">Рассчитать Координаты</string>
+    <string name="point1_cords">Первая точка</string>
+    <string name="point2_cords">Вторая точка</string>
+    <string name="not_all_fields_entered">Не все поля введены</string>
+    <string name="attention">Внимание</string>
+    <string name="error_moderate">Слишком большая погрешность. Возможно, вам придётся сделать ещё одно измерение, когда подойдёте поближе.</string>
+    <string name="error_critical">Слишком большая погрешность. Может, стоит почитать инструкцию?</string>
 </resources>

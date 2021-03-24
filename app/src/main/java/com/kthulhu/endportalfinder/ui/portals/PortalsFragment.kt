@@ -10,7 +10,7 @@ import com.kthulhu.endportalfinder.R
 
 class PortalsFragment : Fragment() {
 
-    val finderViewModel: PortalsViewModel by viewModels()
+    val portalsViewModel: PortalsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

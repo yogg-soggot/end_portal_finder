@@ -1,8 +1,7 @@
-package com.kthulhu.endportalfinder
+package com.kthulhu.endportalfinder.ui
 
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
-import android.text.method.MovementMethod
 import android.view.Menu
 import android.widget.TextView
 import androidx.navigation.findNavController
@@ -11,11 +10,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.children
-import androidx.drawerlayout.widget.DrawerLayout
+import com.kthulhu.endportalfinder.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         nav_view.setupWithNavController(navController)
+        nav_view.itemIconTintList = null
 
         val gitHubLink: TextView = nav_view.getHeaderView(0).findViewById(R.id.github_link)
         gitHubLink.movementMethod = LinkMovementMethod.getInstance()

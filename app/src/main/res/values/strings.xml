@@ -7,4 +7,21 @@
     <string name="menu_finder">Finder</string>
     <string name="menu_portals">Portals</string>
     <string name="menu_usage_guide">Usage Guide</string>
+
+    <string name="enter_z_hint">Coordinate X</string>
+    <string name="enter_x_hint">Coordinate Z</string>
+    <string name="enter_angle_hint">Eye Angle</string>
+    <string name="get_coordinates">Calculate Coordinates</string>
+    <string name="point1_cords">First Point</string>
+    <string name="point2_cords">Second Point</string>
+
+    <string name="portalx" translatable="false">X = %1d ± %2d</string>
+    <string name="portalz" translatable="false">Z = %1d ± %2d</string>
+
+    <string name="not_all_fields_entered">Not all fields are entered</string>
+    <string name="attention">Attention</string>
+
+    <string name="error_moderate">Too high evaluation error. Consider making another measurement when you are close</string>
+    <string name="error_critical">Too high evaluation error. Try reading the instruction</string>
+
 </resources>
