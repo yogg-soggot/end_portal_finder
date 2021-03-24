@@ -14,4 +14,5 @@
     <string name="attention">Внимание</string>
     <string name="error_moderate">Слишком большая погрешность. Возможно, вам придётся сделать ещё одно измерение, когда подойдёте поближе.</string>
     <string name="error_critical">Слишком большая погрешность. Может, стоит почитать инструкцию?</string>
+    <string name="portal_saved">Портал успешно сохранён</string>
 </resources>

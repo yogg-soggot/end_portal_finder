@@ -24,4 +24,6 @@
     <string name="error_moderate">Too high evaluation error. Consider making another measurement when you are close</string>
     <string name="error_critical">Too high evaluation error. Try reading the instruction</string>
 
+    <string name="portal_saved">Portal successfully saved to database</string>
+
 </resources>

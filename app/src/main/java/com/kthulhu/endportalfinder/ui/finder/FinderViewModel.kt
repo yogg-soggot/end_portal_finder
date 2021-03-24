@@ -1,11 +1,13 @@
 package com.kthulhu.endportalfinder.ui.finder
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.kthulhu.endportalfinder.domain.PortalFactory
 import com.kthulhu.endportalfinder.domain.Repository
 import com.kthulhu.endportalfinder.domain.evaluation.EvaluationError
 import com.kthulhu.endportalfinder.domain.evaluation.Point
 import com.kthulhu.endportalfinder.domain.evaluation.Portal
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class FinderViewModel @Inject constructor(
@@ -21,6 +23,14 @@ class FinderViewModel @Inject constructor(
 
     fun getErrorType(): EvaluationError{
         return portal?.errorType ?: EvaluationError.NORMAL
+    }
+
+    fun savePortal(hasTrueCords: Boolean){
+        portal?.let {
+            viewModelScope.launch {
+                repository.savePortal(it, hasTrueCords)
+            }
+        }
     }
 
 }

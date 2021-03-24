@@ -55,6 +55,12 @@ class FinderFragment : Fragment() {
             showErrorDialogIfNeeded()
         }
 
+        floatingActionButton.setOnClickListener {
+            finderViewModel.savePortal(false) //TODO("Добавить возможность ввести фактические координаты")
+            finderViewModel.portal?.let{
+                Snackbar.make(requireView(), rgS(R.string.portal_saved), Snackbar.LENGTH_LONG).show()
+            }
+        }
 
     }
 

@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [PortalData::class], version = 1)
+@Database(entities = [PortalData::class], version = 2)
 abstract class PortalRoomDatabase : RoomDatabase(){
     abstract fun portalDao(): PortalDao
 
@@ -21,6 +21,7 @@ abstract class PortalRoomDatabase : RoomDatabase(){
                     context.applicationContext,
                     PortalRoomDatabase::class.java,
                     "portal_database")
+                    .fallbackToDestructiveMigration()
                     .build()
                     .also { INSTANCE = it }
             }
