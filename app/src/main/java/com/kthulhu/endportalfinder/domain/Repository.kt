@@ -1,4 +1,9 @@
 package com.kthulhu.endportalfinder.domain
 
-class Repository {
+import com.kthulhu.endportalfinder.data.PortalRoomDatabase
+import javax.inject.Inject
+
+class Repository @Inject constructor (
+    private val database: PortalRoomDatabase
+) {
 }

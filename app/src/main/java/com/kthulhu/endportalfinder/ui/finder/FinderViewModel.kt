@@ -1,17 +1,18 @@
 package com.kthulhu.endportalfinder.ui.finder
 
-import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kthulhu.endportalfinder.domain.PortalFactory
+import com.kthulhu.endportalfinder.domain.Repository
 import com.kthulhu.endportalfinder.domain.evaluation.EvaluationError
 import com.kthulhu.endportalfinder.domain.evaluation.Point
 import com.kthulhu.endportalfinder.domain.evaluation.Portal
+import javax.inject.Inject
 
-class FinderViewModel : ViewModel() {
+class FinderViewModel @Inject constructor(
+    private val factory: PortalFactory,
+    private val repository: Repository
+    ) : ViewModel() {
 
-    private val factory = PortalFactory()
     var portal: Portal? = null
 
     fun findPortal(a: Point, b: Point) {
