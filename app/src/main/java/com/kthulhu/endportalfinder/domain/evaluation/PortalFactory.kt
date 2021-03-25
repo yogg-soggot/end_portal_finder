@@ -1,7 +1,5 @@
-package com.kthulhu.endportalfinder.domain
+package com.kthulhu.endportalfinder.domain.evaluation
 
-import com.kthulhu.endportalfinder.domain.evaluation.Point
-import com.kthulhu.endportalfinder.domain.evaluation.Portal
 import javax.inject.Inject
 
 class PortalFactory @Inject constructor() {

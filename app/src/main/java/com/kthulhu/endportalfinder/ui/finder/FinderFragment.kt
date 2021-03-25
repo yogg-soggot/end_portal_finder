@@ -6,24 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
 import com.kthulhu.endportalfinder.App
 import com.kthulhu.endportalfinder.R
-import com.kthulhu.endportalfinder.domain.PortalFactory
 import com.kthulhu.endportalfinder.domain.evaluation.EvaluationError
 import com.kthulhu.endportalfinder.domain.evaluation.Point
+import com.kthulhu.endportalfinder.ui.MainActivity
+import com.kthulhu.endportalfinder.ui.MainViewModel
 import kotlinx.android.synthetic.main.fragment_finder.*
 import java.lang.NumberFormatException
 import javax.inject.Inject
 
 class FinderFragment : Fragment() {
 
-    @Inject
-    lateinit var finderViewModel: FinderViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -36,7 +35,7 @@ class FinderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireContext().applicationContext as App).appComponent.inject(this)
+        viewModel = (activity as MainActivity).mainViewModel
 
         displayPortalCoordinates()
 
@@ -50,14 +49,14 @@ class FinderFragment : Fragment() {
                 Snackbar.make(requireView(), rgS(R.string.not_all_fields_entered), Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            finderViewModel.findPortal(a, b)
+            viewModel.findPortal(a, b)
             displayPortalCoordinates()
             showErrorDialogIfNeeded()
         }
 
         floatingActionButton.setOnClickListener {
-            finderViewModel.savePortal(false) //TODO("Добавить возможность ввести фактические координаты")
-            finderViewModel.portal?.let{
+            viewModel.savePortal(false) //TODO("Добавить возможность ввести фактические координаты")
+            viewModel.portal?.let{
                 Snackbar.make(requireView(), rgS(R.string.portal_saved), Snackbar.LENGTH_LONG).show()
             }
         }
@@ -73,7 +72,7 @@ class FinderFragment : Fragment() {
                     di.cancel()
                 }.show()
         }
-        when(finderViewModel.getErrorType()) {
+        when(viewModel.getErrorType()) {
             EvaluationError.MODERATE -> showError(rgS(R.string.error_moderate))
             EvaluationError.CRITICAL -> showError(rgS(R.string.error_critical))
             else -> return
@@ -81,7 +80,7 @@ class FinderFragment : Fragment() {
     }
 
     private fun displayPortalCoordinates(){
-        finderViewModel.portal?.let { portal ->
+        viewModel.portal?.let { portal ->
             r_portal_x.text = resources.getString(R.string.portalx, portal.x, portal.errorX)
             r_portal_z.text = resources.getString(R.string.portalz, portal.z, portal.errorZ)
         }

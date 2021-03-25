@@ -52,6 +52,7 @@
         android:hint="@string/enter_angle_hint"
         android:importantForAutofill="no"
         android:inputType="numberDecimal|numberSigned"
+        android:shadowColor="#000000"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/point_2_z"
         app:layout_constraintTop_toBottomOf="@+id/point_2_z" />

@@ -13,5 +13,4 @@ interface PortalDao {
 
     @Query("SELECT * FROM portal_table")
     fun loadAll(): Flow<List<PortalData>>
-
 }

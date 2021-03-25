@@ -8,14 +8,8 @@ import com.kthulhu.endportalfinder.di.DaggerAppComponent
 
 class App : Application() {
 
-    lateinit var appComponent: AppComponent
     override fun onCreate() {
         super.onCreate()
-
-        appComponent = DaggerAppComponent
-            .builder()
-            .appModule(AppModule(applicationContext))
-            .build()
 
     }
 }

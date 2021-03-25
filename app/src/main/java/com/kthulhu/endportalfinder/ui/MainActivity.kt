@@ -4,23 +4,44 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.Menu
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import com.kthulhu.endportalfinder.R
+import com.kthulhu.endportalfinder.di.AppComponent
+import com.kthulhu.endportalfinder.di.AppModule
+import com.kthulhu.endportalfinder.di.DaggerAppComponent
+import com.kthulhu.endportalfinder.ui.finder.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var appComponent: AppComponent
+
+    @Inject
+    lateinit var vmFactory: ViewModelFactory
+
+    val mainViewModel: MainViewModel by viewModels { vmFactory }
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        appComponent = DaggerAppComponent
+            .builder()
+            .appModule(AppModule(applicationContext))
+            .build()
+
+        appComponent.inject(this)
 
         setSupportActionBar(toolbar)
 

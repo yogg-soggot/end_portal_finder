@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kthulhu.endportalfinder.R
-import com.kthulhu.endportalfinder.ui.finder.FinderViewModel
 
 class UsageGuideFragment : Fragment() {
 
-    val usageGuideViewModel: FinderViewModel by viewModels()
+    val usageGuideViewModel: UsageGuideViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
