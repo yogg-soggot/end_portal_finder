@@ -2,10 +2,9 @@ package com.kthulhu.endportalfinder.domain
 
 import com.kthulhu.endportalfinder.data.PortalDao
 import com.kthulhu.endportalfinder.data.PortalData
-import com.kthulhu.endportalfinder.data.PortalRoomDatabase
 import com.kthulhu.endportalfinder.domain.evaluation.Portal
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import javax.inject.Inject
 
 class Repository @Inject constructor (
@@ -16,7 +15,7 @@ class Repository @Inject constructor (
     }
 
     fun loadPortals(): Flow<List<PortalData>> {
-        return dao.loadAll()
+        return dao.loadAll().distinctUntilChanged()
     }
 
     suspend fun deletePortal(portal: PortalData) {
