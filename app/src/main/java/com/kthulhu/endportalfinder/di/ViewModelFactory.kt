@@ -1,4 +1,4 @@
-package com.kthulhu.endportalfinder.ui.finder
+package com.kthulhu.endportalfinder.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
