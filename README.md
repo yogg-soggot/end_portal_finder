@@ -12,3 +12,6 @@ Things I want to add:
 
 - Improved search algorhytm that uses more than two points based on the Least Squares method.
 - Visual representation of Parallax method, found portal and search area.
+
+# Alpha version
+You can download built apk from here: https://github.com/yogg-soggot/end_portal_finder/releases/download/v0.1-alpha/end_portal_finder-v0.1-alpha.apk
