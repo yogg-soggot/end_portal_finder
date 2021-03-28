@@ -14,10 +14,10 @@
         android:layout_width="2dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="@+id/point_1_angle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_second_point"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -29,8 +29,8 @@
         android:importantForAutofill="no"
         android:inputType="numberSigned"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/point_1_z"
+        app:layout_constraintStart_toStartOf="@+id/point_2_x"
         app:layout_constraintTop_toBottomOf="@+id/point_2_x" />
 
     <EditText
@@ -41,8 +41,8 @@
         android:importantForAutofill="no"
         android:inputType="numberSigned"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/point_1_x"
+        app:layout_constraintStart_toStartOf="@+id/tv_second_point"
         app:layout_constraintTop_toBottomOf="@+id/tv_second_point" />
 
     <EditText
@@ -65,8 +65,7 @@
         android:importantForAutofill="no"
         android:inputType="numberSigned"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/point_2_x"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_first_point"
         app:layout_constraintTop_toBottomOf="@+id/tv_first_point" />
 
     <EditText
@@ -77,8 +76,7 @@
         android:importantForAutofill="no"
         android:inputType="numberSigned"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/point_2_z"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/point_1_x"
         app:layout_constraintTop_toBottomOf="@+id/point_1_x" />
 
     <EditText
@@ -136,13 +134,15 @@
         android:id="@+id/tv_first_point"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/point1_cords"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_second_point"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider"
+        app:layout_constraintStart_toEndOf="@+id/divider2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -154,8 +154,8 @@
         android:text="@string/point2_cords"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_first_point"
+        app:layout_constraintEnd_toEndOf="@+id/divider3"
+        app:layout_constraintStart_toStartOf="@+id/divider"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -174,10 +174,10 @@
         android:id="@+id/divider2"
         android:layout_width="2dp"
         android:layout_height="0dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toBottomOf="@+id/point_1_angle"
-        app:layout_constraintEnd_toStartOf="@+id/tv_first_point"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />

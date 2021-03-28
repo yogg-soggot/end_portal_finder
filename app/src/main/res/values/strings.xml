@@ -33,8 +33,8 @@
     <string name="x_hint" translatable="false">x</string>
     <string name="z_hint" translatable="false">z</string>
     <string name="plus_minus" translatable="false">±</string>
-    <string name="edit_error_x">error x</string>
-    <string name="edit_error_z">error z</string>
+    <string name="edit_error_x">x error</string>
+    <string name="edit_error_z">x error</string>
     <string name="checkbox_actual_coordinates">Enter actual coordinates</string>
     <string name="save">Save</string>
     <string name="error_coordinates_not_entered">Portal coordinates are not entered</string>
