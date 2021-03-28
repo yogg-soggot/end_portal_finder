@@ -1,4 +1,4 @@
-package com.kthulhu.endportalfinder.ui.portals
+package com.kthulhu.endportalfinder.ui.portals.editportal
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,12 +11,11 @@ import com.kthulhu.endportalfinder.data.PortalData
 import com.kthulhu.endportalfinder.ui.MainActivity
 import com.kthulhu.endportalfinder.ui.MainViewModel
 import kotlinx.android.synthetic.main.frament_edit_portal.*
-import kotlinx.android.synthetic.main.item_portal.*
 
-class EditPortalDialogFragment: DialogFragment() {
+open class BaseEditPortalDialog: DialogFragment() {
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var portal: PortalData
+    protected lateinit var viewModel: MainViewModel
+    protected lateinit var portal: PortalData
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,49 +27,29 @@ class EditPortalDialogFragment: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel = (activity as MainActivity).mainViewModel
-
-        portal = viewModel.editedPortal
-
-        showPortalData()
-        check_box_actual_cords.setOnCheckedChangeListener { _, isChecked ->
-            if(isChecked) {
-                changeErrorVisibility("0", "0", View.INVISIBLE)
-            } else changeErrorVisibility(
-                portal.errorX.toString(),
-                portal.errorZ.toString(),
-                View.VISIBLE
-            )
-        }
-
-        button_save.setOnClickListener {
-            val newPortal: PortalData
-            try {
-                newPortal = createUpdatedPortal()
-            } catch (e: CoordinatesInputException) {
-                showInputError()
-                return@setOnClickListener
-            }
-            viewModel.updatePortal(portal, newPortal)
-            dismiss()
-        }
     }
 
-    private fun changeErrorVisibility(errorX: String, errorZ: String, _visibility: Int){
-        edit_error_x.apply {
-            setText(errorX)
-            visibility = _visibility
-        }
-        edit_error_z.apply {
-            setText(errorZ)
-            visibility = _visibility
-        }
+    protected fun changeErrorVisibility(_visibility: Int) {
+        edit_error_x.visibility = _visibility
+        edit_error_z.visibility = _visibility
         text_plus_minus_1.visibility = _visibility
         text_plus_minus_2.visibility = _visibility
     }
 
-    private fun showPortalData(){
+    protected fun onSaveClicked(){
+        val newPortal: PortalData
+        try {
+            newPortal = createUpdatedPortal()
+        } catch (e: CoordinatesInputException) {
+            showInputError()
+            return
+        }
+        viewModel.savePortal(newPortal)
+        dismiss()
+    }
+
+    protected fun showPortalData(){
         portal.apply {
             name?.let { edit_name.setText(it) }
             edit_x.setText(x.toString())
@@ -115,10 +94,6 @@ class EditPortalDialogFragment: DialogFragment() {
 
     private fun showInputError(){
         Snackbar.make(requireView(), resources.getString(R.string.error_coordinates_not_entered), Snackbar.LENGTH_LONG).show()
-    }
-
-    companion object {
-        const val TAG = "EditPortalDialogFragment"
     }
 
     class CoordinatesInputException : Exception()

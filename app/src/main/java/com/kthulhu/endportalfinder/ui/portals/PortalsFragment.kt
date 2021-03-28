@@ -11,6 +11,8 @@ import com.kthulhu.endportalfinder.R
 import com.kthulhu.endportalfinder.data.PortalData
 import com.kthulhu.endportalfinder.ui.MainActivity
 import com.kthulhu.endportalfinder.ui.MainViewModel
+import com.kthulhu.endportalfinder.ui.portals.editportal.EditPortalDialogFragment
+import com.kthulhu.endportalfinder.ui.portals.editportal.NewPortalDialogFragment
 import kotlinx.android.synthetic.main.fragment_portals.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -41,6 +43,10 @@ class PortalsFragment : Fragment() {
             viewModel.getPortals().collect {
                 adapter.setPortals(it)
             }
+        }
+
+        btn_new_portal.setOnClickListener {
+            NewPortalDialogFragment().show(childFragmentManager, NewPortalDialogFragment.TAG)
         }
     }
 

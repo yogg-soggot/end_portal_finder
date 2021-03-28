@@ -31,9 +31,15 @@ class MainViewModel @Inject constructor(
 
     fun savePortal(){
         portal?.let {
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 repository.savePortal(it)
             }
+        }
+    }
+
+    fun savePortal(portal: PortalData){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.savePortal(portal)
         }
     }
 

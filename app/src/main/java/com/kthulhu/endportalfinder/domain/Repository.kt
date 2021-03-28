@@ -14,6 +14,10 @@ class Repository @Inject constructor (
         dao.insert(portal.convertToEntity())
     }
 
+    suspend fun savePortal(portal: PortalData){
+        dao.insert(portal)
+    }
+
     fun loadPortals(): Flow<List<PortalData>> {
         return dao.loadAll().distinctUntilChanged()
     }
