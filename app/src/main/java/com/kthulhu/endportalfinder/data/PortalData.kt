@@ -1,7 +1,6 @@
 package com.kthulhu.endportalfinder.data
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 
 @Entity(tableName = "portal_table", primaryKeys = ["x", "z"])
 data class PortalData(
@@ -9,5 +8,5 @@ data class PortalData(
     val z: Int,
     val errorX: Int,
     val errorZ: Int,
-    val hasTrueCoordinates: Boolean
+    val name: String? = null
 )

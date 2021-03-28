@@ -4,10 +4,12 @@
     <string name="nav_header_subtitle" translatable="false"><a href ="https://github.com/yogg-soggot">github.com/yogg-soggot</a></string>
     <string name="settings">Settings</string>
 
+    <!-- Nav Drawer Menu -->
     <string name="menu_finder">Finder</string>
     <string name="menu_portals">Portals</string>
     <string name="menu_usage_guide">Usage Guide</string>
 
+    <!-- Finder fragment -->
     <string name="enter_z_hint">Coordinate X</string>
     <string name="enter_x_hint">Coordinate Z</string>
     <string name="enter_angle_hint">Eye Angle</string>
@@ -25,5 +27,16 @@
     <string name="error_critical">Too high evaluation error. Try reading the instruction</string>
 
     <string name="portal_saved">Portal successfully saved to database</string>
+
+    <!-- Portals Fragment -->
+    <string name="title_hint">Name (optional)</string>
+    <string name="x_hint" translatable="false">x</string>
+    <string name="z_hint" translatable="false">z</string>
+    <string name="plus_minus" translatable="false">±</string>
+    <string name="edit_error_x">error x</string>
+    <string name="edit_error_z">error z</string>
+    <string name="checkbox_actual_coordinates">Enter actual coordinates</string>
+    <string name="save">Save</string>
+    <string name="error_coordinates_not_entered">Portal coordinates are not entered</string>
 
 </resources>

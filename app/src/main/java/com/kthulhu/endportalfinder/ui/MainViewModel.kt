@@ -19,6 +19,7 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     var portal: Portal? = null
+    lateinit var editedPortal: PortalData
 
     fun findPortal(a: Point, b: Point) {
         portal = factory.findPortal(a, b)
@@ -28,10 +29,10 @@ class MainViewModel @Inject constructor(
         return portal?.errorType ?: EvaluationError.NORMAL
     }
 
-    fun savePortal(hasTrueCords: Boolean){
+    fun savePortal(){
         portal?.let {
             viewModelScope.launch {
-                repository.savePortal(it, hasTrueCords)
+                repository.savePortal(it)
             }
         }
     }
@@ -43,6 +44,12 @@ class MainViewModel @Inject constructor(
     fun deletePortal(portalData: PortalData){
         viewModelScope.launch(Dispatchers.IO) {
             repository.deletePortal(portalData)
+        }
+    }
+
+    fun updatePortal(portal: PortalData, newPortal: PortalData){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updatePortal(portal, newPortal)
         }
     }
 }

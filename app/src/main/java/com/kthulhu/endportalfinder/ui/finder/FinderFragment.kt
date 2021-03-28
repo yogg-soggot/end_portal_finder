@@ -8,17 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
-import com.kthulhu.endportalfinder.App
 import com.kthulhu.endportalfinder.R
 import com.kthulhu.endportalfinder.domain.evaluation.EvaluationError
 import com.kthulhu.endportalfinder.domain.evaluation.Point
 import com.kthulhu.endportalfinder.ui.MainActivity
 import com.kthulhu.endportalfinder.ui.MainViewModel
 import kotlinx.android.synthetic.main.fragment_finder.*
-import java.lang.NumberFormatException
-import javax.inject.Inject
 
 class FinderFragment : Fragment() {
 
@@ -55,7 +51,7 @@ class FinderFragment : Fragment() {
         }
 
         floatingActionButton.setOnClickListener {
-            viewModel.savePortal(false) //TODO("Добавить возможность ввести фактические координаты")
+            viewModel.savePortal()
             viewModel.portal?.let{
                 Snackbar.make(requireView(), rgS(R.string.portal_saved), Snackbar.LENGTH_LONG).show()
             }

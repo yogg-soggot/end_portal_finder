@@ -10,14 +10,15 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_portal.view.*
 
 class PortalsAdapter(
-    private val onRemoveBtnClick: (portal: PortalData) -> Unit
+    private val onRemoveBtnClick: (portal: PortalData) -> Unit,
+    private val onEditBtnClick: (portal: PortalData) -> Unit
 ) : RecyclerView.Adapter<PortalsAdapter.ViewHolder>() {
 
     private var data = listOf<PortalData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_portal, parent, false)
-        return ViewHolder(view, onRemoveBtnClick)
+        return ViewHolder(view, onRemoveBtnClick, onEditBtnClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -28,19 +29,26 @@ class PortalsAdapter(
 
     class ViewHolder(
         override val containerView: View,
-        private val onRemoveBtnClick: (portal: PortalData) -> Unit
+        private val onRemoveBtnClick: (portal: PortalData) -> Unit,
+        private val onEditBtnClick: (portal: PortalData) -> Unit
     ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(data: PortalData){
-            containerView.tv_x.text = containerView.resources.getString(
-                R.string.portalx,
-                data.x, data.errorX
-            )
-            containerView.tv_z.text = containerView.resources.getString(
-                R.string.portalz,
-                data.z, data.errorZ
-            )
-            containerView.btn_delete.setOnClickListener {
-                onRemoveBtnClick(data)
+            containerView.apply {
+                portal_name.visibility = View.GONE
+                data.name?.let {
+                    portal_name.text = it
+                    portal_name.visibility = View.VISIBLE
+                }
+                tv_x.text = resources.getString(
+                    R.string.portalx,
+                    data.x, data.errorX
+                )
+                tv_z.text = resources.getString(
+                    R.string.portalz,
+                    data.z, data.errorZ
+                )
+                btn_delete.setOnClickListener { onRemoveBtnClick(data) }
+                btn_edit.setOnClickListener { onEditBtnClick(data) }
             }
         }
     }

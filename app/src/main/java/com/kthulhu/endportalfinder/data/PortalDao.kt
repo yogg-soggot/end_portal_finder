@@ -11,6 +11,9 @@ interface PortalDao {
     @Delete
     suspend fun delete(portalData: PortalData): Void
 
+    @Update
+    suspend fun update(portalData: PortalData): Void
+
     @Query("SELECT * FROM portal_table")
     fun loadAll(): Flow<List<PortalData>>
 }

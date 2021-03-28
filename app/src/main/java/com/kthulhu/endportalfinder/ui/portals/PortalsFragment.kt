@@ -33,7 +33,7 @@ class PortalsFragment : Fragment() {
 
         viewModel = (activity as MainActivity).mainViewModel
 
-        adapter = PortalsAdapter(::onRemoveClicked)
+        adapter = PortalsAdapter(::onRemoveClicked, ::onEditClicked)
         recycler_view.adapter = adapter
         recycler_view.layoutManager = LinearLayoutManager(context)
 
@@ -46,5 +46,10 @@ class PortalsFragment : Fragment() {
 
     private fun onRemoveClicked(portal: PortalData){
         viewModel.deletePortal(portal)
+    }
+
+    private fun onEditClicked(portal: PortalData){
+        viewModel.editedPortal = portal
+        EditPortalDialogFragment().show(childFragmentManager, EditPortalDialogFragment.TAG)
     }
 }

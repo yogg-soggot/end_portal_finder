@@ -15,4 +15,10 @@
     <string name="error_moderate">Слишком большая погрешность. Возможно, вам придётся сделать ещё одно измерение, когда подойдёте поближе.</string>
     <string name="error_critical">Слишком большая погрешность. Может, стоит почитать инструкцию?</string>
     <string name="portal_saved">Портал успешно сохранён</string>
+    <string name="title_hint">Название (опционально)</string>
+    <string name="edit_error_x">погрешность по x</string>
+    <string name="edit_error_z">погрешность по z</string>
+    <string name="checkbox_actual_coordinates">Ввести фактические координаты</string>
+    <string name="save">Сохранить</string>
+    <string name="error_coordinates_not_entered">Координаты портала не введены</string>
 </resources>

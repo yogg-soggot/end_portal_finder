@@ -10,8 +10,8 @@ import javax.inject.Inject
 class Repository @Inject constructor (
     private val dao: PortalDao
 ) {
-    suspend fun savePortal(portal: Portal, hasTrueCords: Boolean = false){
-        dao.insert(portal.convertToEntity(hasTrueCords))
+    suspend fun savePortal(portal: Portal){
+        dao.insert(portal.convertToEntity())
     }
 
     fun loadPortals(): Flow<List<PortalData>> {
@@ -20,5 +20,18 @@ class Repository @Inject constructor (
 
     suspend fun deletePortal(portal: PortalData) {
         dao.delete(portal)
+    }
+
+    suspend fun updatePortal(portal: PortalData, newPortal: PortalData) {
+        if(isPrimaryKeySame(portal, newPortal)) {
+            dao.update(newPortal)
+        } else {
+            dao.delete(portal)
+            dao.insert(newPortal)
+        }
+    }
+
+    private fun isPrimaryKeySame(portal: PortalData, newPortal: PortalData): Boolean {
+        return portal.x == newPortal.x && portal.z == newPortal.z
     }
 }
