@@ -52,7 +52,9 @@ class Portal(private val a: Point, private val b: Point) {
     fun checkIsPortalValid() {
         val vectorByPoints = Pair(x - a.x, z - a.z)
         val vectorByAngle = Pair(-sin(a.angle), cos(a.angle))
-        isNotValid = scalarProduct(vectorByPoints, vectorByAngle) < 0
+        if(scalarProduct(vectorByPoints, vectorByAngle) < 0){
+            errorType = EvaluationError.INVALID_PORTAL
+        }
     }
 
     companion object {

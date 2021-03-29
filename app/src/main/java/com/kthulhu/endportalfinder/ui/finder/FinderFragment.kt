@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.item_portal.*
 
 class FinderFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    lateinit var vm: MainViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -32,9 +32,9 @@ class FinderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = (activity as MainActivity).mainViewModel
+        vm = (activity as MainActivity).mainViewModel
 
-        displayPortalCoordinates()
+        vm.finderState.onFragmentStarted(this)
 
         button_compute.setOnClickListener {
             val a: Point
@@ -47,45 +47,38 @@ class FinderFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            viewModel.findPortal(a, b)
+            vm.findPortal(a, b)
 
-            showErrorDialogIfNeeded()
-            displayPortalCoordinates()
+            vm.finderState = when(vm.portal.errorType) {
+                EvaluationError.NORMAL -> FoundSuccessfully()
+                EvaluationError.INVALID_PORTAL -> PortalIsInvalid
+                else -> EvaluationErrorIsHigh
+            }
+
+            vm.finderState.onPortalFound(this)
+
         }
 
         floatingActionButton.setOnClickListener {
-            viewModel.portal?.let {
-                viewModel.savePortal(it)
-                Snackbar.make(requireView(), rgS(R.string.portal_saved), Snackbar.LENGTH_LONG).show()
-            }
+            vm.finderState.onSaveClicked(this)
         }
 
     }
 
-    private fun showErrorDialogIfNeeded(){
-        if (viewModel.portal!!.isNotValid) {
-            showError(rgS(R.string.error_invalid_portal))
-            viewModel.portal = null
-            r_portal_x.text = ""
-            r_portal_z.text = ""
-            return
-        }
-
-        when(viewModel.getErrorType()) {
+    fun warnTooHighError(){
+        when(vm.getErrorType()) {
             EvaluationError.MODERATE -> showError(rgS(R.string.error_moderate))
             EvaluationError.CRITICAL -> showError(rgS(R.string.error_critical))
             else -> return
         }
     }
 
-    private fun displayPortalCoordinates(){
-        viewModel.portal?.let { portal ->
-            r_portal_x.text = resources.getString(R.string.portalx, portal.x, portal.errorX)
-            r_portal_z.text = resources.getString(R.string.portalz, portal.z, portal.errorZ)
-        }
+    fun displayPortalCoordinates(){
+        r_portal_x.text = resources.getString(R.string.portalx, vm.portal.x, vm.portal.errorX)
+        r_portal_z.text = resources.getString(R.string.portalz, vm.portal.z, vm.portal.errorZ)
     }
 
-    private fun showError(error: String){
+    fun showError(error: String){
         AlertDialog.Builder(requireContext())
             .setMessage(error)
             .setTitle(rgS(R.string.attention))
@@ -100,7 +93,7 @@ class FinderFragment : Fragment() {
         return Point(x.getInt(), z.getInt(), angle.getDouble())
     }
 
-    private fun rgS(id: Int): String{
+    fun rgS(id: Int): String {
         return resources.getString(id)
     }
 }

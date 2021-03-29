@@ -8,6 +8,8 @@ import com.kthulhu.endportalfinder.domain.evaluation.EvaluationError
 import com.kthulhu.endportalfinder.domain.evaluation.Point
 import com.kthulhu.endportalfinder.domain.evaluation.Portal
 import com.kthulhu.endportalfinder.domain.evaluation.PortalFactory
+import com.kthulhu.endportalfinder.ui.finder.FinderState
+import com.kthulhu.endportalfinder.ui.finder.PortalNotFoundYet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -18,18 +20,20 @@ class MainViewModel @Inject constructor(
     private val repository: Repository
 ) : ViewModel() {
 
-    var portal: Portal? = null
+    lateinit var portal: Portal
     lateinit var editedPortal: PortalData
+
+    var finderState: FinderState = PortalNotFoundYet
 
     fun findPortal(a: Point, b: Point) {
         portal = factory.findPortal(a, b)
     }
 
     fun getErrorType(): EvaluationError {
-        return portal?.errorType ?: EvaluationError.NORMAL
+        return portal.errorType
     }
 
-    fun savePortal(portal: Portal){
+    fun savePortal(){
         viewModelScope.launch(Dispatchers.IO) {
             repository.savePortal(portal)
         }
