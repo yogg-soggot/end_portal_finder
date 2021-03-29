@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings">Настройки</string>
+    <string name="bug_report">Сообщить об ошибке</string>
     <string name="menu_finder">Поиск портала</string>
     <string name="menu_portals">Найденные порталы</string>
     <string name="menu_usage_guide">Как пользоваться</string>
@@ -21,4 +21,5 @@
     <string name="checkbox_actual_coordinates">Ввести фактические координаты</string>
     <string name="save">Сохранить</string>
     <string name="error_coordinates_not_entered">Координаты портала не введены</string>
+    <string name="email_subject">Ошибка в приложении End Portal Finder</string>
 </resources>

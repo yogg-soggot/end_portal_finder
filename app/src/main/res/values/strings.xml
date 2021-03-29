@@ -2,7 +2,9 @@
     <string name="app_name" translatable="false">End Portal Finder</string>
     <string name="nav_header_title" translatable="false">End Portal Finder</string>
     <string name="nav_header_subtitle" translatable="false"><a href ="https://github.com/yogg-soggot">github.com/yogg-soggot</a></string>
-    <string name="settings">Settings</string>
+    <string name="bug_report">Bug report</string>
+    <string name="my_email" translatable="false">nikita.iv666@gmail.com</string>
+    <string name="email_subject">End Portal Finder bug report</string>
 
     <!-- Nav Drawer Menu -->
     <string name="menu_finder">Finder</string>

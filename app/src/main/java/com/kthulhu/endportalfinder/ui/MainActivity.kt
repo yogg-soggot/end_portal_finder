@@ -1,8 +1,11 @@
 package com.kthulhu.endportalfinder.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -62,6 +65,25 @@ class MainActivity : AppCompatActivity() {
 
         val gitHubLink: TextView = nav_view.getHeaderView(0).findViewById(R.id.github_link)
         gitHubLink.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+    private fun sendBugReport(){
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(resources.getString(R.string.my_email)))
+            putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.email_subject))
+        }
+        startActivity(Intent.createChooser(intent, resources.getString(R.string.bug_report)))
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.action_bug_report -> {
+                sendBugReport()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     //Todo("Избавиться если не понадобится")
