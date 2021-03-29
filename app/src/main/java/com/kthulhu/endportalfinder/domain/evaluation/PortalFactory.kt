@@ -10,6 +10,7 @@ class PortalFactory @Inject constructor() {
             findErrX()
             findErrZ()
             checkErrorType()
+            checkIsPortalValid()
         }
     }
 }

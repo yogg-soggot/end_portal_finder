@@ -1,11 +1,7 @@
 package com.kthulhu.endportalfinder.domain.evaluation
 
 
-
-import java.lang.Math.toRadians
-import kotlin.math.PI
-import kotlin.math.pow
-import kotlin.math.sqrt
+import kotlin.math.*
 import kotlin.properties.Delegates.notNull
 
 
@@ -16,11 +12,9 @@ class Portal(private val a: Point, private val b: Point) {
     var errorX by notNull<Int>()
     var errorZ by notNull<Int>()
 
+    var isNotValid by notNull<Boolean>()
+
     var errorType = EvaluationError.NORMAL
-
-    private fun sec(angle: Double) :Double = 1/ kotlin.math.cos(toRadians(angle))
-
-    private fun csc(angle: Double): Double = 1/ kotlin.math.sin(toRadians(angle))
 
     fun findX(){
         val numerator = b.x*csc(b.angle)*sec(a.angle) - (a.x*csc(a.angle)+(a.z-b.z)*sec(a.angle))*sec(b.angle)
@@ -53,6 +47,12 @@ class Portal(private val a: Point, private val b: Point) {
             errorX > LARGE_DISTANCE || errorZ > LARGE_DISTANCE -> EvaluationError.CRITICAL
             else -> EvaluationError.MODERATE
         }
+    }
+
+    fun checkIsPortalValid() {
+        val vectorByPoints = Pair(x - a.x, z - a.z)
+        val vectorByAngle = Pair(-sin(a.angle), cos(a.angle))
+        isNotValid = scalarProduct(vectorByPoints, vectorByAngle) < 0
     }
 
     companion object {

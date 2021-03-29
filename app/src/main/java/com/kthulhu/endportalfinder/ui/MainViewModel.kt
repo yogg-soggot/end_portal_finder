@@ -29,11 +29,9 @@ class MainViewModel @Inject constructor(
         return portal?.errorType ?: EvaluationError.NORMAL
     }
 
-    fun savePortal(){
-        portal?.let {
-            viewModelScope.launch(Dispatchers.IO) {
-                repository.savePortal(it)
-            }
+    fun savePortal(portal: Portal){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.savePortal(portal)
         }
     }
 

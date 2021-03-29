@@ -15,6 +15,7 @@ import com.kthulhu.endportalfinder.domain.evaluation.Point
 import com.kthulhu.endportalfinder.ui.MainActivity
 import com.kthulhu.endportalfinder.ui.MainViewModel
 import kotlinx.android.synthetic.main.fragment_finder.*
+import kotlinx.android.synthetic.main.item_portal.*
 
 class FinderFragment : Fragment() {
 
@@ -45,14 +46,16 @@ class FinderFragment : Fragment() {
                 Snackbar.make(requireView(), rgS(R.string.not_all_fields_entered), Snackbar.LENGTH_LONG).show()
                 return@setOnClickListener
             }
+
             viewModel.findPortal(a, b)
-            displayPortalCoordinates()
+
             showErrorDialogIfNeeded()
+            displayPortalCoordinates()
         }
 
         floatingActionButton.setOnClickListener {
-            viewModel.savePortal()
-            viewModel.portal?.let{
+            viewModel.portal?.let {
+                viewModel.savePortal(it)
                 Snackbar.make(requireView(), rgS(R.string.portal_saved), Snackbar.LENGTH_LONG).show()
             }
         }
@@ -60,14 +63,14 @@ class FinderFragment : Fragment() {
     }
 
     private fun showErrorDialogIfNeeded(){
-        fun showError(error: String){
-            AlertDialog.Builder(requireContext())
-                .setMessage(error)
-                .setTitle(rgS(R.string.attention))
-                .setNegativeButton(rgS(android.R.string.ok)){ di: DialogInterface, _ ->
-                    di.cancel()
-                }.show()
+        if (viewModel.portal!!.isNotValid) {
+            showError(rgS(R.string.error_invalid_portal))
+            viewModel.portal = null
+            r_portal_x.text = ""
+            r_portal_z.text = ""
+            return
         }
+
         when(viewModel.getErrorType()) {
             EvaluationError.MODERATE -> showError(rgS(R.string.error_moderate))
             EvaluationError.CRITICAL -> showError(rgS(R.string.error_critical))
@@ -80,6 +83,15 @@ class FinderFragment : Fragment() {
             r_portal_x.text = resources.getString(R.string.portalx, portal.x, portal.errorX)
             r_portal_z.text = resources.getString(R.string.portalz, portal.z, portal.errorZ)
         }
+    }
+
+    private fun showError(error: String){
+        AlertDialog.Builder(requireContext())
+            .setMessage(error)
+            .setTitle(rgS(R.string.attention))
+            .setNegativeButton(rgS(android.R.string.ok)){ di: DialogInterface, _ ->
+                di.cancel()
+            }.show()
     }
 
     private fun toPoint(x: TextView, z: TextView, angle: TextView): Point{
