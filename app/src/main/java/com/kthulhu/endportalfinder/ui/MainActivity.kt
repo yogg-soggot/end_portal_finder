@@ -86,7 +86,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //Todo("Избавиться если не понадобится")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         return true
