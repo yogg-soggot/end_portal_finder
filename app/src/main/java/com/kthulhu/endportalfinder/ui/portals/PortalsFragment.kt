@@ -1,11 +1,13 @@
 package com.kthulhu.endportalfinder.ui.portals
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kthulhu.endportalfinder.R
 import com.kthulhu.endportalfinder.data.PortalData
@@ -37,7 +39,13 @@ class PortalsFragment : Fragment() {
 
         adapter = PortalsAdapter(::onRemoveClicked, ::onEditClicked)
         recycler_view.adapter = adapter
-        recycler_view.layoutManager = LinearLayoutManager(context)
+
+        if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            recycler_view.layoutManager = LinearLayoutManager(context)
+        } else {
+            recycler_view.layoutManager = GridLayoutManager(context, 2)
+        }
+
 
         lifecycleScope.launch {
             viewModel.getPortals().collect {
