@@ -45,7 +45,7 @@ open class BaseEditPortalDialog: DialogFragment() {
             showInputError()
             return
         }
-        viewModel.savePortal(newPortal)
+        viewModel.updatePortal(portal, newPortal)
         dismiss()
     }
 
