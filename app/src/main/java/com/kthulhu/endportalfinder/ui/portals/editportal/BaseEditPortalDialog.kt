@@ -16,6 +16,7 @@ open class BaseEditPortalDialog: DialogFragment() {
 
     protected lateinit var viewModel: MainViewModel
     protected lateinit var portal: PortalData
+    protected lateinit var newPortal: PortalData
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,16 +38,13 @@ open class BaseEditPortalDialog: DialogFragment() {
         text_plus_minus_2.visibility = _visibility
     }
 
-    protected fun onSaveClicked(){
-        val newPortal: PortalData
+    protected open fun onSaveClicked(){
         try {
             newPortal = createUpdatedPortal()
         } catch (e: CoordinatesInputException) {
             showInputError()
             return
         }
-        viewModel.updatePortal(portal, newPortal)
-        dismiss()
     }
 
     protected fun showPortalData(){
