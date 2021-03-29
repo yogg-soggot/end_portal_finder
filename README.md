@@ -14,4 +14,4 @@ Things I want to add:
 - Visual representation of Parallax method, found portal and search area.
 
 # Alpha version
-You can download built apk from here: https://github.com/yogg-soggot/end_portal_finder/releases/download/v0.1-alpha/end_portal_finder-v0.1-alpha.apk
+You can download built apk from here: https://github.com/yogg-soggot/end_portal_finder/releases

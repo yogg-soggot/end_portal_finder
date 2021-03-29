@@ -27,6 +27,12 @@ class EditPortalDialogFragment : BaseEditPortalDialog() {
         }
     }
 
+    override fun onSaveClicked(){
+        super.onSaveClicked()
+        viewModel.updatePortal(portal, newPortal)
+        dismiss()
+    }
+
     private fun changeErrorVisibility(errorX: String, errorZ: String, _visibility: Int){
         changeErrorVisibility(_visibility)
         edit_error_x.setText(errorX)

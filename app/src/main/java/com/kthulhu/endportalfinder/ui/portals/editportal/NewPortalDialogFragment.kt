@@ -21,6 +21,12 @@ class NewPortalDialogFragment : BaseEditPortalDialog() {
         }
     }
 
+    override fun onSaveClicked() {
+        super.onSaveClicked()
+        viewModel.savePortal(newPortal)
+        dismiss()
+    }
+
     companion object {
         const val TAG = "NewPortalDialogFragment"
     }
