@@ -87,7 +87,7 @@ class FinderFragment : Fragment() {
             }.show()
     }
 
-    private fun toPoint(x: TextView, z: TextView, angle: TextView): Point{
+    private fun toPoint(x: TextView, z: TextView, angle: TextView): Point {
         fun TextView.getInt() = this.text.toString().toInt()
         fun TextView.getDouble() = this.text.toString().toDouble()
         return Point(x.getInt(), z.getInt(), angle.getDouble())

@@ -12,8 +12,6 @@ class Portal(private val a: Point, private val b: Point) {
     var errorX by notNull<Int>()
     var errorZ by notNull<Int>()
 
-    var isNotValid by notNull<Boolean>()
-
     var errorType = EvaluationError.NORMAL
 
     fun findX(){
@@ -50,8 +48,11 @@ class Portal(private val a: Point, private val b: Point) {
     }
 
     fun checkIsPortalValid() {
-        val vectorByPoints = Pair(x - a.x, z - a.z)
-        val vectorByAngle = Pair(-sin(a.angle), cos(a.angle))
+        val vectorByPoints = Pair(z - a.z, x - a.x)
+        val vectorByAngle = Pair(
+            cos(a.angle.toRadians()),
+            -sin(a.angle.toRadians())
+        )
         if(scalarProduct(vectorByPoints, vectorByAngle) < 0){
             errorType = EvaluationError.INVALID_PORTAL
         }

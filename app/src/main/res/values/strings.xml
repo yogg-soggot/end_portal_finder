@@ -12,8 +12,8 @@
     <string name="menu_usage_guide">Usage Guide</string>
 
     <!-- Finder fragment -->
-    <string name="enter_z_hint">Coordinate X</string>
-    <string name="enter_x_hint">Coordinate Z</string>
+    <string name="enter_z_hint">Coordinate Z</string>
+    <string name="enter_x_hint">Coordinate X</string>
     <string name="enter_angle_hint">Eye Angle</string>
     <string name="get_coordinates">Calculate Coordinates</string>
     <string name="point1_cords">First Point</string>
