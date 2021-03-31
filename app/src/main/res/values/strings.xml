@@ -5,6 +5,7 @@
     <string name="bug_report">Bug report</string>
     <string name="my_email" translatable="false">nikita.iv666@gmail.com</string>
     <string name="email_subject">End Portal Finder bug report</string>
+    <string name="usage_guide_pdf_name">Usage Guide En.pdf</string>
 
     <!-- Nav Drawer Menu -->
     <string name="menu_finder">Finder</string>

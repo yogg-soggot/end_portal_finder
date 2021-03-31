@@ -23,4 +23,5 @@
     <string name="error_coordinates_not_entered">Координаты портала не введены</string>
     <string name="email_subject">Ошибка в приложении End Portal Finder</string>
     <string name="error_invalid_portal">Ошибка поиска. Око Края указывает на два разных портала. Вам придётся повторить поиск с другими точками.</string>
+    <string name="usage_guide_pdf_name">Usage Guide Ru.pdf</string>
 </resources>

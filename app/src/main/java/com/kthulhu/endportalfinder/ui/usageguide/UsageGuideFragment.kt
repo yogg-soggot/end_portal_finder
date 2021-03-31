@@ -23,7 +23,7 @@ class UsageGuideFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pdfView.fromAsset("Usage Guide.pdf")
+        pdfView.fromAsset(resources.getString(R.string.usage_guide_pdf_name))
             .defaultPage(viewModel.currentPage)
             .onPageChange { page, _ ->  viewModel.currentPage = page}
             .onRender { _, _, _ ->

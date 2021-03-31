@@ -17,14 +17,10 @@ class NewPortalDialogFragment : BaseEditPortalDialog() {
         }
 
         button_save.setOnClickListener{
-            onSaveClicked()
+            onSaveClicked {
+                viewModel.savePortal(newPortal)
+            }
         }
-    }
-
-    override fun onSaveClicked() {
-        super.onSaveClicked()
-        viewModel.savePortal(newPortal)
-        dismiss()
     }
 
     companion object {

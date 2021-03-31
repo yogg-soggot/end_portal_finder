@@ -23,14 +23,10 @@ class EditPortalDialogFragment : BaseEditPortalDialog() {
         }
 
         button_save.setOnClickListener {
-            onSaveClicked()
+            onSaveClicked {
+                viewModel.updatePortal(portal, newPortal)
+            }
         }
-    }
-
-    override fun onSaveClicked(){
-        super.onSaveClicked()
-        viewModel.updatePortal(portal, newPortal)
-        dismiss()
     }
 
     private fun changeErrorVisibility(errorX: String, errorZ: String, _visibility: Int){

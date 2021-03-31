@@ -38,9 +38,13 @@ open class BaseEditPortalDialog: DialogFragment() {
         text_plus_minus_2.visibility = _visibility
     }
 
-    protected open fun onSaveClicked(){
+    protected fun onSaveClicked(
+        save: () -> Unit
+    ){
         try {
             newPortal = createUpdatedPortal()
+            save()
+            dismiss()
         } catch (e: CoordinatesInputException) {
             showInputError()
             return
